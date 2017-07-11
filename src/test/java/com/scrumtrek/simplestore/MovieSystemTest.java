@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
  * Test, Test scenario: method
  */
 @Ignore
-public class MovieTest {
+public class MovieSystemTest {
     @Test
     public void itShouldGetCorrectTitleAndPriceCodeWhenCreateMovie() { //BDD: Domain Lang
         //region Fixture | Arrange | Given

@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
  * Created by imamy on 10.07.2017.
  */
 @Ignore
-public class CustomerTest {
+public class CustomerSystemTest {
     @Test
     public void itShouldBLABLAWhenBLALA(){
         //region Fixture | Arrange | Given
