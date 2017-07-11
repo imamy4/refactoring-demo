@@ -1,4 +1,4 @@
-package intro;
+package com.scrumtrek.simplestore;
 
 import org.junit.Test;
 import com.scrumtrek.simplestore.*;

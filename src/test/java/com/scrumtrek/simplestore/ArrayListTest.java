@@ -1,11 +1,9 @@
-package intro;
+package com.scrumtrek.simplestore;
 
-import org.junit.Assume;
 import org.junit.Test;
-
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.fest.assertions.api.Assertions.assertThat;
 import static org.junit.Assume.assumeTrue;
 
 /**
@@ -30,7 +28,13 @@ public class ArrayListTest { //SUT = ArrayList
         /**
          * AssertionError | Failure
          */
-        assertEquals(1, sut.size());
+
+        assertThat(sut.size())
+                .isEqualTo(1);
+
+        assertThat(sut)
+                .doesNotContain(2);
+
         //endregion
     }
 }

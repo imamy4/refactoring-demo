@@ -1,4 +1,4 @@
-package intro;
+package com.scrumtrek.simplestore;
 
 import com.scrumtrek.simplestore.Customer;
 import com.scrumtrek.simplestore.Movie;
@@ -49,6 +49,33 @@ public class CustomerTest {
         Assert.assertTrue(stat1.contains(movCinderella.getTitle()) &&
                 stat1.contains(movStarWars.getTitle()) &&
                 stat1.contains(movGladiator.getTitle()));
+
+        //endregion
+    }
+
+    @Test
+    public void itShouldCorrectAmountWhenAddRental(){
+        //region Fixture | Arrange | Given
+        Movie movCinderella = new Movie("Cinderella", PriceCodes.Childrens);
+
+        Customer sut = new Customer("Mickey Mouse");
+
+        // Create rentals
+        Rental rental = new Rental(movCinderella, 1);
+
+        //endregion
+
+        //region Act | When
+
+        sut.addRental(rental);
+        String stat = sut.Statement();
+
+        //endregion
+
+        //region Assert | Then
+       // String row = movCinderella.getTitle() + "\t" + "1.5" + "\n";
+        String row = "Amount owed is 1.5" + "\n";;
+        Assert.assertTrue(stat.contains(row));
 
         //endregion
     }
