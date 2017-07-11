@@ -11,20 +11,74 @@ import static org.mockito.Mockito.when;
  */
 public class UnitTest {
     @Test
-    public void shouldCalculateCorrectPriceWhenAddRental(){
-        String filmTitle = "Some film";
+    public void shouldCalculateCorrectPriceWhenAddChildMovieForOneDay(){
         int daysRented = 1;
         double expectedAmount = 1.5;
+        PriceCodes priceCode = PriceCodes.Childrens;
 
-        check(filmTitle, daysRented, expectedAmount);
+        checkAmount(priceCode, daysRented, expectedAmount);
     }
 
-    private void check(String filmTitle, int daysRented, double expectedAmount){
-        Customer sut = new Customer("Pashka");
+    @Test
+    public void shouldCalculateCorrectPriceWhenAddChildMovieForFiveDay(){
+        int daysRented = 5;
+        double expectedAmount = 3;
+        PriceCodes priceCode = PriceCodes.Childrens;
+
+        checkAmount(priceCode, daysRented, expectedAmount);
+    }
+
+    @Test
+    public void shouldCalculateCorrectPriceWhenAddRegularMovieForOneDay(){
+        int daysRented = 1;
+        double expectedAmount = 2;
+        PriceCodes priceCode = PriceCodes.Regular;
+
+        checkAmount(priceCode, daysRented, expectedAmount);
+    }
+
+    @Test
+    public void shouldCalculateCorrectPriceWhenAddRegularMovieForFiveDay(){
+        int daysRented = 5;
+        double expectedAmount = 6.5;
+        PriceCodes priceCode = PriceCodes.Regular;
+
+        checkAmount(priceCode, daysRented, expectedAmount);
+    }
+
+    @Test
+    public void shouldCalculateCorrectPriceWhenAddNewMovieForOneDay(){
+        int daysRented = 1;
+        double expectedAmount = 3;
+        PriceCodes priceCode = PriceCodes.NewRelease;
+
+        checkAmount(priceCode, daysRented, expectedAmount);
+    }
+
+    @Test
+    public void shouldCalculateCorrectPriceWhenAddNewMovieForFiveDay(){
+        int daysRented = 5;
+        double expectedAmount = 15;
+        PriceCodes priceCode = PriceCodes.NewRelease;
+
+        checkAmount(priceCode, daysRented, expectedAmount);
+    }
+
+    private void checkAmount(PriceCodes priceCode, int daysRented, double expectedAmount){
+        final String filmTitle = "Some title";
+        String statement = getStatement(filmTitle, priceCode, daysRented);
+
+        assertThat(statement).contains(filmTitle + "\t" + expectedAmount + "\n");
+    }
+
+    private String getStatement(String filmTitle, PriceCodes priceCode, int daysRented) {
+        final String name = "Pashka";
+
+        Customer sut = new Customer(name);
 
         Movie movieStub = mock(Movie.class);
         Rental rentalStub = mock(Rental.class);
-        when(movieStub.getPriceCode()).thenReturn(PriceCodes.Childrens);
+        when(movieStub.getPriceCode()).thenReturn(priceCode);
         when(movieStub.getTitle()).thenReturn(filmTitle);
 
         when(rentalStub.getMovie()).thenReturn(movieStub);
@@ -32,8 +86,6 @@ public class UnitTest {
 
         sut.addRental(rentalStub);
 
-        String result = sut.Statement();
-
-        assertThat(result).contains(filmTitle + "\t" + expectedAmount + "\n");
+        return sut.Statement();
     }
 }
