@@ -1,5 +1,6 @@
 package com.scrumtrek.simplestore;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ import static org.junit.Assume.assumeTrue;
  * Test Case: class
  * Test, Test scenario: method
  */
+@Ignore
 public class ArrayListTest { //SUT = ArrayList
     @Test
     public void itShouldSizeIncrementedAddedWhenDoAddElement() { //BDD: Domain Lang

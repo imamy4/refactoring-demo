@@ -1,5 +1,6 @@
 package com.scrumtrek.simplestore;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import com.scrumtrek.simplestore.*;
 
@@ -10,6 +11,7 @@ import static org.junit.Assert.assertEquals;
  * Test Case: class
  * Test, Test scenario: method
  */
+@Ignore
 public class MovieTest {
     @Test
     public void itShouldGetCorrectTitleAndPriceCodeWhenCreateMovie() { //BDD: Domain Lang

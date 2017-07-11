@@ -64,11 +64,37 @@ public class UnitTest {
         checkAmount(priceCode, daysRented, expectedAmount);
     }
 
+    @Test
+    public void shouldCalculateCorrectFrequentRenterPointsWhenAddNewMovieForOneDay(){
+        int daysRented = 1;
+        int expectedPoints = 1;
+        PriceCodes priceCode = PriceCodes.NewRelease;
+
+        checkFrequentRenterPoints(priceCode, daysRented, expectedPoints);
+    }
+
+    @Test
+    public void shouldCalculateCorrectFrequentRenterPointsWhenAddNewMovieForFiveDay(){
+        int daysRented = 5;
+        int expectedPoints = 2;
+        PriceCodes priceCode = PriceCodes.NewRelease;
+
+        checkFrequentRenterPoints(priceCode, daysRented, expectedPoints);
+    }
+
     private void checkAmount(PriceCodes priceCode, int daysRented, double expectedAmount){
         final String filmTitle = "Some title";
         String statement = getStatement(filmTitle, priceCode, daysRented);
 
         assertThat(statement).contains(filmTitle + "\t" + expectedAmount + "\n");
+    }
+
+    private void checkFrequentRenterPoints(PriceCodes priceCode, int daysRented, int expectedPoints){
+        final String filmTitle = "Some title";
+        String statement = getStatement(filmTitle, priceCode, daysRented);
+
+        assertThat(statement)
+                .contains("You earned " + expectedPoints + " frequent renter points.");
     }
 
     private String getStatement(String filmTitle, PriceCodes priceCode, int daysRented) {
