@@ -39,7 +39,16 @@ public class Customer {
 						thisAmount += (each.getDaysRented() - 2) * 1.5;
 					}
 					break;
-	
+
+				case XXX:
+					thisAmount += 2;
+					if (each.getDaysRented() > 2)
+					{
+						thisAmount += (each.getDaysRented() - 2) * 1.5;
+					}
+
+					thisAmount *= 0.85;
+					break;
 				case NewRelease:
 					thisAmount += each.getDaysRented() * 3;
 					break;
